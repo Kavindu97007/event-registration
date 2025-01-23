@@ -17,11 +17,13 @@
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
+
+        // Create a table for displaying the records
         echo "<table>";
         echo "<thead>
                 <tr>
-                    <th>Full Name</th>
-                    <th>Email</th>
+                    <th>Full Name</th> <!-- Column header for Full Name -->
+                    <th>Email</th>  <!-- Column header for Email -->
                     <th>Phone Number</th>
                     <th>Event Name</th>
                     <th>NIC Number</th>
@@ -30,20 +32,21 @@
               </thead>";
         echo "<tbody>";
         
-        // Display each row of data
+        // Loop through each record in the result set
         while ($row = $result->fetch_assoc()) {
+            // Display the record in a new table row
             echo "<tr>
                     <td>{$row['full_name']}</td>
                     <td>{$row['email']}</td>
                     <td>{$row['phone_number']}</td>
                     <td>{$row['event_name']}</td>
                     <td>{$row['nic_number']}</td>
-                    <td><a href='uploads/{$row['nic_attachment']}' target='_blank'>View Attachment</a></td>
+                    <td><a href='/Event_Registration/uploads/{$row['nic_attachment']}' target='_blank'>View Attachment</a></td>
                   </tr>";
         }
 
         echo "</tbody>";
-        echo "</table>";
+        echo "</table>"; // Close the table
 
         // Display total attendee count
         $totalAttendees = $result->num_rows;
@@ -55,6 +58,8 @@
     // Close the database connection
     $conn->close();
     ?>
-    <a href="../home/homePage.php" class="home-btn">Back to Home</a>
+
+    <!-- Button to navigate back to the home page -->
+    <a href="/Event_Registration/pages/home/home.php" class="home-btn">Back to Home</a>
 </body>
 </html>

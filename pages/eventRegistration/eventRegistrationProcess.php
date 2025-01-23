@@ -23,20 +23,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert data into database
-    try {
-        $stmt = $conn->prepare("INSERT INTO registrations (full_name, email, phone_number, event_name, nic_number, nic_attachment) 
-                                VALUES (:full_name, :email, :phone_number, :event_name, :nic_number, :nic_attachment)");
-        $stmt->bindParam(':full_name', $fullName);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':phone_number', $phone);
-        $stmt->bindParam(':event_name', $eventName);
-        $stmt->bindParam(':nic_number', $nic);
-        $stmt->bindParam(':nic_attachment', $uploadResult['path']);
-        $stmt->execute();
+    $sql = "INSERT INTO registrations (full_name, email, phone_number, event_name, nic_number, nic_attachment) 
+            VALUES (?, ?, ?, ?, ?, ?)";
+    
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("ssssss", $fullName, $email, $phone, $eventName, $nic, $uploadResult['path']);
+        
+        if ($stmt->execute()) {
+            echo "You have successfully submitted your data! <a href='../home/home.php'>Click here to return to the home page.</a>";
+        } else {
+            die("Error inserting data: " . $stmt->error);
+        }
 
-        echo "You have successfully submitted your data! <a href='../home/home.php'>Click here to return to the home page.</a>";
-    } catch (PDOException $e) {
-        die("Error inserting data: " . $e->getMessage());
+        $stmt->close();
+    } else {
+        die("Error preparing statement: " . $conn->error);
     }
 }
 ?>

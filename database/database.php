@@ -1,14 +1,15 @@
 <?php
-//for Database Connection
-$host = "localhost";
+// MySQLi connection
+$servername = "localhost";
 $username = "root";
-$password = ""; // enter the MySQL password if have 
+$password = ""; // Update with your database password
 $dbname = "event_db";
 
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //ensures a secure and flexible way to interact with MySQL, with    built-in support for prepared statements to prevent SQL injection.
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
