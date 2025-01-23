@@ -41,7 +41,7 @@
                     <td>{$row['phone_number']}</td>
                     <td>{$row['event_name']}</td>
                     <td>{$row['nic_number']}</td>
-                    <td><a href='/Event_Registration/uploads/{$row['nic_attachment']}' target='_blank'>View Attachment</a></td>
+                    <td><a href='{$row["nic_attachment"]}' target='_blank'>View Attachment</a></td>
                   </tr>";
         }
 

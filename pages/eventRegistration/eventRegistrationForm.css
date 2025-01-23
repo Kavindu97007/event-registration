@@ -6,13 +6,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #9b59b6;
+    background-color: #6c5b7b;
 }
 
 .event-form-container {
     width: 500px;
     height: auto;
-    background-color: #c699e8;
+    background-color: #dcd0ff;
     padding: 90px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

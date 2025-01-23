@@ -12,6 +12,7 @@
 
     <div class="event-form-container">
         <h2>Event Registration Form</h2>
+        
         <form action="eventRegistrationProcess.php" method="post" enctype="multipart/form-data">
 
             <!-- Add "required" to check empty fields -->

@@ -9,28 +9,44 @@ function validateEmail($email) {
 
 // Handle file upload
 function handleFileUpload($file, $nic) {
-    $uploadDir = "../../uploads/"; // correct path relative to the script location
+
+    // Define the directory where files will be uploaded
+    $uploadDirectory = "../../uploads/"; // correct path relative to the script location
+
     $allowedExtensions = ['jpg', 'jpeg', 'png', 'pdf']; //allowed fomats
-    $fileTmpPath = $file['tmp_name'];
+
+    // Get the temporary file path, original file name, and file size from the uploaded file
+    $fileTemporaryPath = $file['tmp_name'];
     $fileName = $file['name'];
     $fileSize = $file['size'];
+
+    // Extract and convert the file extension to lowercase for validation
     $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
+    // Check if the file extension is in the allowed list
     if (!in_array($fileExtension, $allowedExtensions)) {
         return ["success" => false, "message" => "Invalid file type. Only JPG, JPEG, PNG, and PDF are allowed."];
     }
 
+    // Check if the file size exceeds the 10MB limit
     if ($fileSize > 10 * 1024 * 1024) { // 10MB limit
         return ["success" => false, "message" => "File size exceeds 10MB. Please upload a smaller file."];
     }
 
     $newFileName = $nic . "_attachment." . $fileExtension; // naming the file with nicprefix
-    $destPath = $uploadDir . $newFileName;
+    
+    // Determine the full destination path for the file
+    $destinationPath = $uploadDirectory . $newFileName;
 
-    if (move_uploaded_file($fileTmpPath, $destPath)) {
-        return ["success" => true, "path" => $destPath];
+    // Move the uploaded file to the specified destination
+    if (move_uploaded_file($fileTemporaryPath, $destinationPath)) {
+
+        // Return success and the file path if the file was moved successfully
+        return ["success" => true, "path" => $destinationPath];
+
     } else {
-        echo "Destination path: " . $destPath;
+        echo "Destination path: " . $destinationPath;
+        // Return failure message if the file could not be moved
         return ["success" => false, "message" => "Error moving the uploaded file."];
     }
 }
