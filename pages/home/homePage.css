@@ -1,0 +1,40 @@
+/* Apply global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f0fc; /* Light purple background */
+    text-align: center;
+}
+
+/* Style the main container */
+.home {
+    margin-top: 50px; /* Add space above the content */
+    padding: 20px;
+}
+
+/* Style the heading */
+h2 {
+    color: #5e239d; /* Dark purple color */
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Style the buttons */
+.btn {
+    background-color: #9b59b6; /* Purple background for buttons */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px; /* Add spacing between buttons */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Add hover effect for buttons */
+.btn:hover {
+    background-color: #7e3794; /* Darker purple on hover */
+    transition: 0.3s;
+}
