@@ -10,8 +10,9 @@
 <body>
     <div class="home">
         <h2>Event Home Page</h2>
-        <a href="../eventRegistration/eventRegistrationForm.php"><button type="button" class="btn">Register for Event</button></a>
-        <a href="../viewAllRecords/viewAllRecords.php"><button type="button" class="btn">View All Records</button></a>
+        <!-- Adds absolute paths for avoids confusion caused by the file structure and relative paths. -->
+        <a href="/Event_Registration/pages/eventRegistration/eventRegistrationForm.php"><button type="button" class="btn">Register for Event</button></a>
+        <a href="/Event_Registration/pages/viewAllRecords/viewAllRecords.php"><button type="button" class="btn">View All Records</button></a>
     </div>
 </body>
 </html>
